@@ -33,9 +33,11 @@ def getConservation(DNaseFileName, PhastconsFileName, conservationFileName):
 					break
 				if len(PhastconsLineElements) > 1:
 					# A new chromosome has been reached
-					newChromReached = True
 					PhastconsChromInfo = PhastconsLineElements[1].split("=")
-					PhastconsChrom = PhastconsChromInfo[1]
+					if PhastconsChromInfo[1] != PhastconsChrom:
+						# At a new chromosome
+						newChromReached = True
+						PhastconsChrom = PhastconsChromInfo[1]
 					PhastconsStartInfo = PhastconsLineElements[2].split("=")
 					PhastconsIndex = int(PhastconsStartInfo[1])
 					PhastconsLine = PhastconsFile.readline() #ADDED
